@@ -6,6 +6,9 @@ namespace EsiTest.AutomatedTellerMachine.Operations
 {
     public class WithdrawOperation : ITellerMachineOperation
     {
+        private const string WithdrawHeader = "Withdraw funds:";
+        private const string WithdrawFailedMessage = "Unable to withdraw funds.";
+
         private readonly IAccountTransactionProvider _provider;
 
         public WithdrawOperation(IAccountTransactionProvider provider)
@@ -15,27 +18,24 @@ namespace EsiTest.AutomatedTellerMachine.Operations
 
         public string OperationName => "Withdraw";
 
+        /// <summary>
+        /// Attempts to withdraw funds from the account.
+        /// </summary>
         public void PerformOperation()
         {
-            Console.WriteLine("Withdraw funds:");
+            Console.WriteLine(WithdrawHeader);
+            
+            int accountId = ParserHelperMethods.GetAccountId();
+            int pin = ParserHelperMethods.GetPin();
+            decimal amount = ParserHelperMethods.GetAmount();
 
-            bool isValid = false;
-
-            while (!isValid)
+            if (!_provider.PerformTransaction(accountId, TransactionType.Withdraw, amount, pin))
             {
-                int accountId = ParserHelperMethods.GetAccountId();
-                int pin = ParserHelperMethods.GetPin();
-                decimal amount = ParserHelperMethods.GetAmount();
-
-                if (!_provider.PerformTransaction(accountId, TransactionType.Withdraw, amount, pin))
-                {
-                    Console.WriteLine("Unable to withdraw funds.");
-                }
-                else
-                {
-                    Console.WriteLine($"Successfully withdrew {amount:C}!");
-                    isValid = true;
-                }
+                Console.WriteLine(WithdrawFailedMessage);
+            }
+            else
+            {
+                Console.WriteLine($"Successfully withdrew {amount:C}!");
             }
         }
 

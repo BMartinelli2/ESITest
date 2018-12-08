@@ -6,6 +6,8 @@ namespace EsiTest.AutomatedTellerMachine.Operations
 {
     public class HistoryOperation : ITellerMachineOperation
     {
+        private const string HistoryDisplayHeader = "Display account history:";
+
         private readonly IAccountTransactionProvider _provider;
 
         public HistoryOperation(IAccountTransactionProvider provider)
@@ -15,9 +17,12 @@ namespace EsiTest.AutomatedTellerMachine.Operations
 
         public string OperationName => "History";
 
+        /// <summary>
+        /// Attempts to display history for the account.
+        /// </summary>
         public void PerformOperation()
         {
-            Console.WriteLine("Display account history:");
+            Console.WriteLine(HistoryDisplayHeader);
 
             int accountId = ParserHelperMethods.GetAccountId();
             int pin = ParserHelperMethods.GetPin();

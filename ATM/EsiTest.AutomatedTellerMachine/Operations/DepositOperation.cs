@@ -6,6 +6,9 @@ namespace EsiTest.AutomatedTellerMachine.Operations
 {
     public class DepositOperation : ITellerMachineOperation
     {
+        private const string DepositHeader = "Deposit funds:";
+        private const string DepositFailedMessage = "Unable to deposit funds.";
+
         private readonly IAccountTransactionProvider _provider;
 
         public DepositOperation(IAccountTransactionProvider provider)
@@ -15,27 +18,24 @@ namespace EsiTest.AutomatedTellerMachine.Operations
 
         public string OperationName => "Deposit";
 
+        /// <summary>
+        /// Attempts to deposit funds into the account.
+        /// </summary>
         public void PerformOperation()
         {
-            Console.WriteLine("Deposit funds:");
+            Console.WriteLine(DepositHeader);
 
-            bool isValid = false;
+            int accountId = ParserHelperMethods.GetAccountId();
+            int pin = ParserHelperMethods.GetPin();
+            decimal amount = ParserHelperMethods.GetAmount();
 
-            while (!isValid)
+            if (!_provider.PerformTransaction(accountId, TransactionType.Deposit, amount, pin))
             {
-                int accountId = ParserHelperMethods.GetAccountId();
-                int pin = ParserHelperMethods.GetPin();
-                decimal amount = ParserHelperMethods.GetAmount();
-
-                if (!_provider.PerformTransaction(accountId, TransactionType.Deposit, amount, pin))
-                {
-                    Console.WriteLine("Unable to deposit funds.");
-                }
-                else
-                {
-                    Console.WriteLine($"Successfully deposited {amount:C}!");
-                    isValid = true;
-                }
+                Console.WriteLine(DepositFailedMessage);
+            }
+            else
+            {
+                Console.WriteLine($"Successfully deposited {amount:C}!");
             }
         }
     }

@@ -5,6 +5,10 @@ namespace EsiTest.AutomatedTellerMachine.Operations
 {
     public class CreateAccountOperation : ITellerMachineOperation
     {
+        private const string AccountCreateHeader = "Create a new account!";
+        private const string CreateAccountFailedMessage = "Unable to create account.";
+        private const string CreateAccountSucceededMessage = "Successfully created your account!";
+
         private readonly IAccountTransactionProvider _provider;
 
         public CreateAccountOperation(IAccountTransactionProvider provider)
@@ -15,30 +19,22 @@ namespace EsiTest.AutomatedTellerMachine.Operations
         public string OperationName => "Create";
 
         /// <summary>
-        /// This method performs a basic account creation.
-        /// This probably could be broken into a series of additional commands
-        /// and with better added navigation.
+        /// Attempts to create an account.
         /// </summary>
         public void PerformOperation()
         {
-            Console.WriteLine("Create a new account!");
+            Console.WriteLine(AccountCreateHeader);
 
-            bool isValid = false;
+            int accountId = ParserHelperMethods.GetAccountId();
+            int pin = ParserHelperMethods.GetPin();
 
-            while (!isValid)
+            if (!_provider.CreateAccount(accountId, pin))
             {
-                int accountId = ParserHelperMethods.GetAccountId();
-                int pin = ParserHelperMethods.GetPin();
-
-                if (!_provider.CreateAccount(accountId, pin))
-                {
-                    Console.WriteLine("Unable to create account.");
-                }
-                else
-                {
-                    Console.WriteLine("Successfully created your account!");
-                    isValid = true;
-                }
+                Console.WriteLine(CreateAccountFailedMessage);
+            }
+            else
+            {
+                Console.WriteLine(CreateAccountSucceededMessage);
             }
         }
 

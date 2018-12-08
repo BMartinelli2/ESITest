@@ -5,14 +5,20 @@ using EsiTest.AutomatedTellerMachine.Data.Models;
 
 namespace EsiTest.AutomatedTellerMachine.Business
 {
+    /// <summary>
+    /// Business layer that provides account transaction data and balance information.
+    /// Note: In a typical application the presentation layer should handle all user display
+    /// and this would handle only business logic. Therefore Console.WriteLine should only be used
+    /// at the user display level, and not on this application layer.
+    /// </summary>
     public class AccountTransactionProvider : IAccountTransactionProvider
     {
         private const string NoHistoryAvailableMessage = "No history available for this account";
         private const string NoAccountAvailableMessage = "Account not found";
         private const string InvalidPinMessage = "Invalid PIN";
         private const string OverdraftWarningMessage = "WARNING YOUR ACCOUNT IS BELOW $0.00, YOU WILL BE CHARGED AN OVERDRAFT FEE.";
+        private const string HistoryHeaderBar = "------------------------------";
         private readonly IAccountsDao _accountDao;
-
 
         public AccountTransactionProvider(IAccountsDao accountDao)
         {
@@ -95,6 +101,11 @@ namespace EsiTest.AutomatedTellerMachine.Business
 
         }
 
+        /// <summary>
+        /// Displays account information on the console.
+        /// </summary>
+        /// <param name="accountId">Account to use.</param>
+        /// <param name="pin">Pin to verify against.</param>
         public void PrintAccountInformation(int accountId, int pin)
         {
             try
@@ -106,9 +117,11 @@ namespace EsiTest.AutomatedTellerMachine.Business
                 else if(ValidatePin(accountId, pin))
                 {
                     var account = _accountDao.GetAccount(accountId);
+                    var balance = _accountDao.GetCurrentBalance(accountId);
 
                     Console.WriteLine($"Account {accountId} summary.");
-                    Console.WriteLine("------------------------------");
+                    Console.WriteLine($"Balance: {balance:C}");
+                    Console.WriteLine(HistoryHeaderBar);
 
                     if (account.TransactionHistory == null || account.TransactionHistory.Count == 0)
                     {
