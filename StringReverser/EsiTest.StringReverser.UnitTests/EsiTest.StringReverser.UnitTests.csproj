@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\StringReverser\EsiTest.StringReverser\EsiTest.StringReverser.csproj" />
+    <ProjectReference Include="..\EsiTest.StringReverser\EsiTest.StringReverser.csproj" />
   </ItemGroup>
 
 </Project>
