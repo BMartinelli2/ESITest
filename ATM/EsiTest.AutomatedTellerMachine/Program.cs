@@ -6,6 +6,13 @@ using EsiTest.AutomatedTellerMachine.Operations;
 
 namespace EsiTest.AutomatedTellerMachine
 {
+    //General Notes:
+    //Things that could also be done:
+    //-Only allow withdraws within increments of $20
+    //-Don't allow the account to go negative
+    //-Add a service fee to the transaction
+    //-Add support for account transfers
+
     class Program
     {
         private const string AccountFile = "AccountsFile.json";

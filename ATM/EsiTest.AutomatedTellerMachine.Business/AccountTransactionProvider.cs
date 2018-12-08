@@ -25,6 +25,14 @@ namespace EsiTest.AutomatedTellerMachine.Business
             _accountDao = accountDao;
         }
 
+        /// <summary>
+        /// Performs a transaction on the account.
+        /// </summary>
+        /// <param name="accountId">Account ID to perform the transaction.</param>
+        /// <param name="type">Type of transaction to perform, such as a deposit.</param>
+        /// <param name="amount">Amount of the transaction</param>
+        /// <param name="pin">Pin for verification</param>
+        /// <returns>Indicates if the transaction successfully completed.</returns>
         public bool PerformTransaction(int accountId, TransactionType type, decimal amount, int pin)
         {
             bool result = false;
@@ -83,6 +91,12 @@ namespace EsiTest.AutomatedTellerMachine.Business
             return result;
         }
 
+        /// <summary>
+        /// Creates a new account with the specified account ID and pin
+        /// </summary>
+        /// <param name="accountId">Account id to create</param>
+        /// <param name="pin">Pin to use</param>
+        /// <returns>Indicates if the account was successfully created.</returns>
         public bool CreateAccount(int accountId, int pin)
         {
             bool result = false;
