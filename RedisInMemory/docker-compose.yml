@@ -1,0 +1,22 @@
+version: '3.4'
+networks:
+    internal:
+        driver: bridge
+services:
+  redis:
+    image: ${DOCKER_REGISTRY-}redis
+    networks:
+      - internal
+  esitest.redisinmemory:
+    networks:
+      - internal
+    image: ${DOCKER_REGISTRY-}esitestredisinmemory
+    stdin_open: true
+    tty: true
+    depends_on:
+      - redis
+    build:
+      context: .
+      dockerfile: EsiTest.RedisInMemory/Dockerfile
+    environment:
+      - REDIS_CONNECTION_STRING=redis:6379
