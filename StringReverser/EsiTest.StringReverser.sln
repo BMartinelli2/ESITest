@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.28307.136
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EsiTest.StringReverser", "EsiTest.StringReverser\EsiTest.StringReverser.csproj", "{1106C572-AC68-4472-9FDF-61FF499CA686}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EsiTest.StringReverser.UnitTests", "..\EsiTest.StringReverser.UnitTests\EsiTest.StringReverser.UnitTests.csproj", "{B152CFA9-9B90-4688-A4D1-0BC2BB237ED4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EsiTest.StringReverser.UnitTests", "EsiTest.StringReverser.UnitTests\EsiTest.StringReverser.UnitTests.csproj", "{B152CFA9-9B90-4688-A4D1-0BC2BB237ED4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

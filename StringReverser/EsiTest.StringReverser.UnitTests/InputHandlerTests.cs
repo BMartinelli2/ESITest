@@ -50,7 +50,7 @@ namespace EsiTest.StringReverser.UnitTests
             //Setup:
             const string inputString = "MyInputIsHere";
             var testArgumentOutOfRangeException = new ArgumentOutOfRangeException();
-            _stringReverserMock.Setup(t => t.ParseInputValue(inputString)).Throws(testArgumentOutOfRangeException);
+            _consoleReaderMock.Setup(t => t.ReadLine()).Throws(testArgumentOutOfRangeException);
 
             //Execute:
             _inputHandler.ParseInput();
@@ -70,7 +70,7 @@ namespace EsiTest.StringReverser.UnitTests
             //Setup:
             const string inputString = "MyInputIsHere";
             var testException = new Exception();
-            _stringReverserMock.Setup(t => t.ParseInputValue(inputString)).Throws(testException);
+            _consoleReaderMock.Setup(t => t.ReadLine()).Throws(testException);
 
             //Execute:
             Exception thrownException = null;
