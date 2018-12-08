@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.28307.136
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EsiTest.AutomatedTellerMachine", "EsiTest.AutomatedTellerMachine\EsiTest.AutomatedTellerMachine.csproj", "{A58A49AA-E6A3-4782-963C-88C5C630D4BF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EsiTest.AutomatedTellerMachine.Data", "..\EsiTest.AutomatedTellerMachine.Data\EsiTest.AutomatedTellerMachine.Data.csproj", "{9E15F00E-2BCE-40B5-8866-B790FD1E4576}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EsiTest.AutomatedTellerMachine.Data", "EsiTest.AutomatedTellerMachine.Data\EsiTest.AutomatedTellerMachine.Data.csproj", "{9E15F00E-2BCE-40B5-8866-B790FD1E4576}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EsiTest.AutomatedTellerMachine.Business", "EsiTest.AutomatedTellerMachine.Business\EsiTest.AutomatedTellerMachine.Business.csproj", "{E716A0B6-12A0-4E80-892E-09F9B4694C11}"
 EndProject

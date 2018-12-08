@@ -11,14 +11,12 @@ namespace EsiTest.AutomatedTellerMachine.Data
     public class AccountDataProvider : IAccountDataProvider
     {
         private string _accountFile;
-        private bool _isInitialized = false;
         private List<UserAccount> _userAccounts;
 
         public List<UserAccount> UserAccounts
         {
             get => _userAccounts;
         }
-
 
         public void LoadAccountsData(string accountFile)
         {
@@ -36,7 +34,6 @@ namespace EsiTest.AutomatedTellerMachine.Data
 
                 var fileData = File.ReadAllText(_accountFile);
                 _userAccounts = JsonConvert.DeserializeObject<UserAccount[]>(fileData).ToList();
-                _isInitialized = true;
             }
             catch (Exception ex) 
             {

@@ -66,8 +66,6 @@ namespace EsiTest.AutomatedTellerMachine.Operations
             {
                 Console.WriteLine(InvalidOperationMessage);
             }
-
-            
         }
 
         public void ExecuteCommandLoop()
