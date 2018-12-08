@@ -29,7 +29,7 @@ namespace EsiTest.AutomatedTellerMachine.Data
 
                 if (!File.Exists(accountFile))
                 {
-                    Console.WriteLine("Account file not found -- generating new accounts database file.");
+                    PrintFirstRunInformation();
                     _userAccounts = new List<UserAccount>();
                     SaveChanges();
                 }
@@ -54,6 +54,21 @@ namespace EsiTest.AutomatedTellerMachine.Data
             string serializedUserAccounts = JsonConvert.SerializeObject(UserAccounts);
             //Overwrite the old file.
             File.WriteAllText(_accountFile, serializedUserAccounts, Encoding.UTF8);
+        }
+
+        private void PrintFirstRunInformation()
+        {
+            //Normally something like this would not exist in the data provider section of the application
+            //and it would be using an external configuration.
+            //In the case we have a database down or database not found issue, we would
+            //use a logger to log the issue, and attempt to reconnect or retry to connect for a number
+            //of times or for a period of time.
+            Console.WriteLine(@"Account file not found -- generating new accounts database file.");
+            Console.WriteLine("----------------------------------------------------------------");
+            Console.WriteLine("This is probably the first time you're running this, please create");
+            Console.WriteLine("a new account with the 'create' command and deposit funds with the");
+            Console.WriteLine(" 'deposit' command.");
+            Console.WriteLine("----------------------------------------------------------------");
         }
     }
 }

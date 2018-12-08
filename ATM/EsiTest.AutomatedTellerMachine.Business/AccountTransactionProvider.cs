@@ -10,7 +10,7 @@ namespace EsiTest.AutomatedTellerMachine.Business
         private const string NoHistoryAvailableMessage = "No history available for this account";
         private const string NoAccountAvailableMessage = "Account not found";
         private const string InvalidPinMessage = "Invalid PIN";
-        private const string OverdraftWarningMessage = "WARNING YOUR ACCOUNT IS BELOW $0.00, YOU WILL BE CHARGED AN OVERDRAFT FEE."
+        private const string OverdraftWarningMessage = "WARNING YOUR ACCOUNT IS BELOW $0.00, YOU WILL BE CHARGED AN OVERDRAFT FEE.";
         private readonly IAccountsDao _accountDao;
 
 
