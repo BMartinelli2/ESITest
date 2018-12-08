@@ -150,12 +150,6 @@ namespace EsiTest.StringReverser.UnitTests
             const int badThreshold = -1;
             const string testInput = "odd ODD oDd EveN even oDD odd odd mold";
             const string expectedExceptionMessage = "Value must be at least 1.";
-            List<(int, string)> expectedOutput = new List<(int, string)>
-            {
-                (6, currentCultureText.ToTitleCase("odd")),
-                (2, currentCultureText.ToTitleCase("even")),
-                (1, currentCultureText.ToTitleCase("mold")),
-            };
 
             //Execute:
             ArgumentOutOfRangeException badValueException = null;

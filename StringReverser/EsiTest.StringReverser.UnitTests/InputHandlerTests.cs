@@ -48,7 +48,6 @@ namespace EsiTest.StringReverser.UnitTests
         public void ParseInput_OutOfRangeException()
         {
             //Setup:
-            const string inputString = "MyInputIsHere";
             var testArgumentOutOfRangeException = new ArgumentOutOfRangeException();
             _consoleReaderMock.Setup(t => t.ReadLine()).Throws(testArgumentOutOfRangeException);
 
@@ -68,7 +67,6 @@ namespace EsiTest.StringReverser.UnitTests
         public void ParseInput_UnhandledException()
         {
             //Setup:
-            const string inputString = "MyInputIsHere";
             var testException = new Exception();
             _consoleReaderMock.Setup(t => t.ReadLine()).Throws(testException);
 
